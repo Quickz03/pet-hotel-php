@@ -21,12 +21,12 @@ $pet = new Pet($db);
 $data = json_decode(file_get_contents("php://input"));
 
 // make sure data is not empty
-if(
+if (
     !empty($data->pet_name) &&
     !empty($data->pet_color) &&
     !empty($data->pet_breed) &&
     !empty($data->checked_in)
-){
+) {
 
     // set pet property values
     $pet->pet_name = $data->pet_name;
@@ -35,7 +35,7 @@ if(
     $pet->checked_in = $data->checked_in;
 
     // create the pets
-    if($pet->create()){
+    if ($pet->create()) {
 
         // set response code - 201 created
         http_response_code(201);
@@ -45,7 +45,7 @@ if(
     }
 
     // if unable to create the pet, tell the user
-    else{
+    else {
 
         // set response code - 503 service unavailable
         http_response_code(503);
@@ -56,7 +56,7 @@ if(
 }
 
 // tell the user data is incomplete
-else{
+else {
 
     // set response code - 400 bad request
     http_response_code(400);

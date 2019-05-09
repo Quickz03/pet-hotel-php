@@ -29,7 +29,6 @@ class Owner
       // execute query
       $stmt->execute();
       return $stmt;
-
    }
 
    // create product

@@ -31,7 +31,6 @@ class Pet
       // execute query
       $stmt->execute();
       return $stmt;
-
    }
 
    // create product
@@ -63,8 +62,4 @@ class Pet
 
       return false;
    }
-
-
-
-
 }
