@@ -36,8 +36,8 @@ if ($num > 0) {
 
       $owner_item = array(
          "id" => $id,
-         "name" => $name,
-         "pet_id" => $pet_id,
+         "owner_name" => $owner_name,
+         "count" => $count,
       );
 
       array_push($owner_arr["owners"], $owner_item);
