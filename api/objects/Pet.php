@@ -1,5 +1,5 @@
 <?php
-class Pets
+class Pet
 {
 
    // database connection and table name
@@ -48,13 +48,13 @@ class Pets
       $this->pet_color = htmlspecialchars(strip_tags($this->pet_color));
       $this->pet_breed = htmlspecialchars(strip_tags($this->pet_breed));
       $this->check_in = htmlspecialchars(strip_tags($this->check_in));
-     
+
       // bind values
       $stmt->bindParam(':pet_name', $this->pet_name);
       $stmt->bindParam(':pet_color', $this->pet_color);
       $stmt->bindParam(':pet_breed', $this->pet_breed);
       $stmt->bindParam(':check_in', $this->check_in);
-      
+
       // execute query
       if ($stmt->execute()) {
          return true;
