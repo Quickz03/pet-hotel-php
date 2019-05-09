@@ -1,5 +1,5 @@
 <?php
-class Owners
+class Owner
 {
 
    // database connection and table name
@@ -7,6 +7,7 @@ class Owners
    private $table_name = "owners";
 
    // object properties
+   public $id;
    public $name;
    public $pet_id;
 
@@ -20,7 +21,7 @@ class Owners
    function read()
    {
       // select all query
-      $query = "SELECT * FROM $this->table_name;";
+      $query = "SELECT * FROM " . $this->table_name . ";";
 
       // prepare query statement
       $stmt = $this->conn->prepare($query);
@@ -44,11 +45,11 @@ class Owners
       // sanitize
       $this->name = htmlspecialchars(strip_tags($this->name));
       $this->pet_id = htmlspecialchars(strip_tags($this->pet_id));
-     
+
       // bind values
       $stmt->bindParam(':name', $this->name);
       $stmt->bindParam(':pet_id', $this->pet_id);
-      
+
       // execute query
       if ($stmt->execute()) {
          return true;

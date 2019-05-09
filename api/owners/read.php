@@ -5,25 +5,25 @@ header("Content-Type: application/json; charset=UTF-8");
 
 // include database and object files
 include_once '../config/database.php';
-include_once '../objects/product.php';
+include_once '../objects/Owner.php';
 
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
 
 // initialize object
-$product = new Product($db);
+$owner = new Owner($db);
 
 // query products
-$stmt = $product->read();
+$stmt = $owner->read();
 $num = $stmt->rowCount();
 
 // check if more than 0 record found
 if ($num > 0) {
 
    // products array
-   $products_arr = array();
-   $products_arr["records"] = array();
+   $owner_arr = array();
+   $owner_arr["owners"] = array();
 
    // retrieve our table contents
    // fetch() is faster than fetchAll()
@@ -34,22 +34,20 @@ if ($num > 0) {
       // just $name only
       extract($row);
 
-      $product_item = array(
+      $owner_item = array(
          "id" => $id,
-         "title" => $title,
-         "publisher" => $publisher,
-         "releaseYear" => $releaseYear,
-         "rating" => $rating,
+         "name" => $name,
+         "pet_id" => $pet_id,
       );
 
-      array_push($products_arr["records"], $product_item);
+      array_push($owner_arr["owners"], $owner_item);
    }
 
    // set response code - 200 OK
    http_response_code(200);
 
    // show products data in json format
-   echo json_encode($products_arr);
+   echo json_encode($owner_arr);
 } else {
 
    // set response code - 404 Not found
