@@ -5,25 +5,25 @@ header("Content-Type: application/json; charset=UTF-8");
 
 // include database and object files
 include_once '../config/database.php';
-include_once '../objects/product.php';
+include_once '../objects/pets.php';
 
 // instantiate database and product object
 $database = new Database();
 $db = $database->getConnection();
 
 // initialize object
-$product = new Product($db);
+$pet = new Pets ($db);
 
 // query products
-$stmt = $product->read();
+$stmt = $pet->read();
 $num = $stmt->rowCount();
 
 // check if more than 0 record found
 if ($num > 0) {
 
    // products array
-   $products_arr = array();
-   $products_arr["records"] = array();
+   $pets_arr = array();
+   $pets_arr["records"] = array();
 
    // retrieve our table contents
    // fetch() is faster than fetchAll()
@@ -34,22 +34,23 @@ if ($num > 0) {
       // just $name only
       extract($row);
 
-      $product_item = array(
+      $pets_item = array(
          "id" => $id,
-         "title" => $title,
-         "publisher" => $publisher,
-         "releaseYear" => $releaseYear,
-         "rating" => $rating,
+         "pet_name" => $pet_name,
+         "pet_color" => $pet_color,
+         "pet_breed" => $pet_breed,
+         "check_in" => $check_in,
       );
 
-      array_push($products_arr["records"], $product_item);
+   $pets_arr = array();
+   array_push($pets_arr["records"], $pets_item);
    }
 
    // set response code - 200 OK
    http_response_code(200);
 
    // show products data in json format
-   echo json_encode($products_arr);
+   echo json_encode($pets_arr);
 } else {
 
    // set response code - 404 Not found
