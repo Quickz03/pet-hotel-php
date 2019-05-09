@@ -25,14 +25,14 @@ if(
     !empty($data->pet_name) &&
     !empty($data->pet_color) &&
     !empty($data->pet_breed) &&
-    !empty($data->check_in)
+    !empty($data->checked_in)
 ){
 
-    // set product property values
+    // set pet property values
     $pet->pet_name = $data->pet_name;
     $pet->pet_color = $data->pet_color;
     $pet->pet_breed = $data->pet_breed;
-    $pet->check_in = $data->check_in;
+    $pet->checked_in = $data->checked_in;
 
     // create the pets
     if($pet->create()){
