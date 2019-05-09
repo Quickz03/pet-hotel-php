@@ -9,27 +9,27 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // get database connection
 include_once '../config/database.php';
 
-// instantiate pets object
-include_once '../objects/Pet.php';
+// instantiate owner object
+include_once '../objects/Owner.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$pet = new Pet($db);
+$owner = new Owner($db);
 
 // declare data
 $data = json_decode(file_get_contents("php://input"));
  
-// set pet id to be deleted
-$pet->id = $data->id;
+// set owner id to be deleted
+$owner->id = $data->id;
 
-if($pet->delete()){
+if($owner->delete()){
  
     // set response code - 200 ok
     http_response_code(200);
  
     // tell the user
-    echo json_encode(array("message" => "Pet was deleted."));
+    echo json_encode(array("message" => "Owner was deleted."));
 }
  
 // if unable to delete the pet
@@ -39,5 +39,5 @@ else{
     http_response_code(503);
  
     // tell the user
-    echo json_encode(array("message" => "Unable to delete pet."));
+    echo json_encode(array("message" => "Unable to delete owner."));
 }

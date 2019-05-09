@@ -4,7 +4,7 @@ class Database
    // specify your own database credentials
    private $host = "localhost";
    private $dbname = "pet_hotel";
-   private $dbuser = "scoob";
+   private $dbuser = "benjaminragsdale";
    private $dbpass = "";
    public $conn;
 
