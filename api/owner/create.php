@@ -21,17 +21,17 @@ $owner = new Owner($db);
 $data = json_decode(file_get_contents("php://input"));
 
 // make sure data is not empty
-if(
+if (
     !empty($data->name) &&
     !empty($data->pet_id)
-){
+) {
 
     // set product property values
     $owner->name = $data->name;
     $owner->pet_id = $data->pet_id;
 
     // create the product
-    if($owner->create()){
+    if ($owner->create()) {
 
         // set response code - 201 created
         http_response_code(201);
@@ -41,7 +41,7 @@ if(
     }
 
     // if unable to create the product, tell the user
-    else{
+    else {
 
         // set response code - 503 service unavailable
         http_response_code(503);
@@ -52,7 +52,7 @@ if(
 }
 
 // tell the user data is incomplete
-else{
+else {
 
     // set response code - 400 bad request
     http_response_code(400);
