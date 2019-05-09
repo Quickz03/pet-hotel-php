@@ -23,7 +23,7 @@ if ($num > 0) {
 
    // products array
    $pets_arr = array();
-   $pets_arr["records"] = array();
+   $pets_arr["pets"] = array();
 
    // retrieve our table contents
    // fetch() is faster than fetchAll()
@@ -39,11 +39,10 @@ if ($num > 0) {
          "pet_name" => $pet_name,
          "pet_color" => $pet_color,
          "pet_breed" => $pet_breed,
-         "check_in" => $check_in,
+         "checked_in" => $checked_in,
       );
 
-   $pets_arr = array();
-   array_push($pets_arr["records"], $pets_item);
+   array_push($pets_arr["pets"], $pets_item);
    }
 
    // set response code - 200 OK
@@ -58,6 +57,6 @@ if ($num > 0) {
 
    // tell the user no products found
    echo json_encode(
-      array("message" => "No products found.")
+      array("message" => "No pets found.")
    );
 }
