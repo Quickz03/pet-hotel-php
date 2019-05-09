@@ -9,39 +9,35 @@ header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers
 // get database connection
 include_once '../config/database.php';
 
-// instantiate product object
-include_once '../objects/product.php';
+// instantiate Owner object
+include_once '../objects/Owner.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$product = new Product($db);
+$owner = new Owner($db);
 
 // get posted data
 $data = json_decode(file_get_contents("php://input"));
 
 // make sure data is not empty
 if(
-    !empty($data->title) &&
-    !empty($data->publisher) &&
-    !empty($data->releaseYear) &&
-    !empty($data->rating)
+    !empty($data->name) &&
+    !empty($data->pet_id)
 ){
 
     // set product property values
-    $product->title = $data->title;
-    $product->publisher = $data->publisher;
-    $product->releaseYear = $data->releaseYear;
-    $product->rating = $data->rating;
+    $owner->name = $data->name;
+    $owner->pet_id = $data->pet_id;
 
     // create the product
-    if($product->create()){
+    if($owner->create()){
 
         // set response code - 201 created
         http_response_code(201);
 
         // tell the user
-        echo json_encode(array("message" => "Product was created."));
+        echo json_encode(array("message" => "Owner was created."));
     }
 
     // if unable to create the product, tell the user
@@ -51,7 +47,7 @@ if(
         http_response_code(503);
 
         // tell the user
-        echo json_encode(array("message" => "Unable to create product."));
+        echo json_encode(array("message" => "Unable to create Owner."));
     }
 }
 
@@ -62,5 +58,5 @@ else{
     http_response_code(400);
 
     // tell the user
-    echo json_encode(array("message" => "Unable to create product. Data is incomplete."));
+    echo json_encode(array("message" => "Unable to create Owner. Data is incomplete."));
 }
