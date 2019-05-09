@@ -4,7 +4,7 @@ CREATE TABLE "pets"
     "pet_name" VARCHAR(150) NOT NULL,
     "pet_color" VARCHAR(50),
     "pet_breed" VARCHAR(50),
-    "checked_in" VARCHAR(25)
+    "checked_in" BOOLEAN
 );
 
 CREATE TABLE "owners"
